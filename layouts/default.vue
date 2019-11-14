@@ -1,10 +1,21 @@
 <template>
-  <div>
+  <div class="d-center">
+    <h1>Too Superstore</h1>
+    <br>
+    <h3>
+      <nuxt-link to='/'>Home</nuxt-link>
+    </h3>
+    <br>
+    <hr>
     <nuxt/>
   </div>
 </template>
 
 <style>
+.d-center {
+  text-align: center;
+}
+
 html {
   font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;

@@ -5,8 +5,10 @@
         <div v-show="ok">UP NAME - {{upperName}}</div>
         <input type="text" :value="name"/>
         <input type="text" v-model="name"/>
-        <button @click="doSave">Save</button>
-        <v-btn color="success" @click="doToggle">Toggle</v-btn>
+        <v-btn @click="doSave">
+            <v-icon dark>favorite</v-icon>
+            Save</v-btn>
+        <v-btn @click="doToggle">Toggle</v-btn>
    
         <h1>Student List</h1>
         <ul>
