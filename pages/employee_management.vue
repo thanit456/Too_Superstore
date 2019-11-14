@@ -1,11 +1,21 @@
 <template>
     <div class="input_info">
-        <v-text-field type="text" v-model="name"/> 
-        <v-text-field type="text" v-model="email"/> 
+        
+           
+                <v-row>
+                    <v-col cols="50" sm="6" md="5">
+                        <v-text-field type="text" v-model="name"
+                        label="Username" placeholder="Fill in the blank"></v-text-field> 
+                        <v-text-field type="text" v-model="email"
+                        label="Email" placeholder="Fill in the blank"></v-text-field> 
+                    </v-col>
+                </v-row>
+            
         
         <v-btn class='text_field' @click="doSave">
             <v-icon dark>favorite</v-icon>Save
         </v-btn>
+
 
         <div>
             <ul>
