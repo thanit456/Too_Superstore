@@ -1,5 +1,5 @@
 <template>
-    <div class="input_info">
+    <div class="text_field">
     
         <v-row>    
                 <v-col cols="12" sm="6" md="2" offset-md="5"
@@ -24,8 +24,11 @@
         <v-btn @click="doSave">
             <v-icon dark>favorite</v-icon>Save
         </v-btn>
+        <v-btn @click="doToggle">
+            <v-icon dark>event</v-icon> Display Table
+        </v-btn>
 
-        <v-simple-table>
+        <v-simple-table v-show="displayTable">
            
                 <thead>
                     <tr>
@@ -35,10 +38,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="employee in employeeLists" :key='employee.number'>
+                    <tr v-for="employee in employees" :key='employee.number'>
                         <td>{{employee.number}}</td>
                         <td>{{employee.name}}</td>
                         <td>{{employee.email}}</td>
+                        <!-- <v-btn @click="editEployee">Edit</v-btn> -->
+                        <v-btn @click="deleteEmployee(employee.number)">Delete</v-btn>
                     </tr>
                 </tbody>
         
@@ -62,22 +67,35 @@
         ::headers="headers"
         ::items="employeeLists"
         ></v-data-table> -->
+   
+   
+   
+    </div>
         
 
-    </div>
+    
 </template>
 <script>
+
+import EmployeeTable from '../components/EmployeeTable.vue'
+import EmployeeForm from '../components/EmployeeForm.vue'
+
 export default {
+    name: 'employee_mangement',
+    component: [
+        EmployeeTable,
+        EmployeeForm,
+    ],
     data() {
 
         return {
              name: "",
              email: "",
              latestNumber: 1,
-             employeeLists: [
+             employees: [
                  {number: 1, name: 'Too', email: 'too_w_o@hotmail.com'},
              ],
-             ok: true,
+             displayTable: true,
              
         }
     },
@@ -97,27 +115,40 @@ export default {
         doSave() {
             console.log('SAVE');
             this.latestNumber += 1;
-            this.employeeLists.push({number: this.latestNumber, name: this.name, email: this.email});
+            this.employees.push({number: this.latestNumber, name: this.name, email: this.email});
             this.name = "";
             this.email = "";
         },
         doToggle() {
-            this.ok = !this.ok;
+            this.displayTable = !this.displayTable;
         },
+        deleteEmployee(number) {
+            this.employees = this.employees.filter(
+                employee => employee.number !== number
+            )
+        },
+        editEployee(number, updatedEmployee) {
+            this.employee = this.employee.map(employee => 
+            employee.number === number ? updatedEmployee : employee)
+        }
     },
 }
 </script>
 
 <style scoped>
-.input_info {
-    text-align: center;
-   
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+  margin-top: 60px;
 }
+
 .text_field {
     background-color: sandybrown;
 
 }
-.column {
-    
+.small-container {
+  max-width: 680px;
 }
 </style>
