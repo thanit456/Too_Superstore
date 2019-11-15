@@ -1,8 +1,5 @@
 <template>
     <div class="text_field">
-        
-       
-    
 
         <v-btn @click="doSave">
             <v-icon dark>favorite</v-icon>Save
