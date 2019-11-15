@@ -1,26 +1,9 @@
 <template>
     <div class="text_field">
-    
-        <v-row>    
-                <v-col cols="12" sm="6" md="2" offset-md="5"
-                class="column" 
-                :align-self="center">
-                <v-text-field
-                    v-model="name"
-                    label="Username"
-                    placeholder="Fill in the blank"
-                ></v-text-field>
-                </v-col>
-                <v-col cols="12" sm="6" md="2" offset-md="5"
-                class="column">
-                <v-text-field
-                    v-model="email"
-                    label="Email"
-                    placeholder="Fill in the blank"
-                ></v-text-field>
-                </v-col>
-        </v-row>
         
+       
+    
+
         <v-btn @click="doSave">
             <v-icon dark>favorite</v-icon>Save
         </v-btn>
@@ -49,15 +32,15 @@
         
         </v-simple-table>
 
-        <div class="form-group row">
-                <tr v-for="employee in employees" :key="employee.number">
-                    <th><input type="text"  required v-model="employee.name" placeholder=" Enter some name"></th>
-                    <th><input type="text" required v-model="employee.email" placeholder=" Email"></th>
-                    <th><button  @click.prevent="createItem()" id="name" name="name">
-                    <span></span> ADD </button>
-                    </th>
-                </tr>
-        </div>          
+        <v-simple-table>
+                
+                <th><input type="text"  required v-model="name" placeholder=" Enter some name"></th>
+                <th><input type="text" required v-model="email" placeholder=" Email"></th>
+                <th><button  @click="doSave">
+                <span></span> ADD </button>
+                </th>
+                
+        </v-simple-table>          
     
         <!-- <div>
             <ul>
