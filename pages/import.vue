@@ -1,6 +1,7 @@
 <template>
-    <div class="text_field">
-    
+    <div>
+        <HelloWorld></HelloWorld>
+        <h1>Branch imports Products</h1>
         <v-row>    
                 <v-col cols="12" sm="6" md="2" offset-md="5"
                 class="column" 
@@ -33,8 +34,8 @@
                 class="column" 
                 :align-self="center">
                 <v-text-field
-                    v-model="branchID"
-                    label="branchID"
+                    v-model="quantity"
+                    label="Quantity"
                     placeholder="Fill in the blank"
                 ></v-text-field>
                 </v-col>
@@ -57,6 +58,7 @@
                         <th class="text-left">Description</th>
                         <th class="text-left">Price</th>
                         <th class="text-left">BranchID</th>
+                        <th class="text-left">Quantity</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -66,27 +68,60 @@
                         <td>{{product.description}}</td>
                         <td>{{product.price}}</td>
                         <td>{{product.branchID}}</td>
+                        <td>{{product.quantity}}</td>
                         <v-btn @click.prevent="deleteProduct(product.number)">Delete</v-btn>
                     </tr>
                 </tbody>
         
         </v-simple-table>        
+    
+    <div>
+        <v-col cols="12" sm="6" md="2" offset-md="5"
+        class="column" 
+        :align-self="left">
+        <v-text-field
+            v-model="branchID"
+            label="branchID"
+            placeholder="Fill in the blank"
+        ></v-text-field>
+        </v-col>
     </div>
+    <div>
+        <v-col cols="12" sm="6" md="2" offset-md="5"
+        class="column" 
+        :align-self="left">
+        <v-text-field
+            v-model="datetime"
+            label="DateTime"
+            placeholder="Fill in the blank"
+        ></v-text-field>
+        </v-col>
+    </div>
+    <v-btn @click="doAdd">
+            <v-icon dark>favorite</v-icon>Import
+    </v-btn>
+    </div>
+    
         
 
     
 </template>
 <script>
-
+import HelloWorld from '../components/HelloWorld'
 export default {
     name: 'member_search',
+    components: {
+        HelloWorld
+    },
     data() {
 
         return {
              name: "",
              description: "",
-             price: "",
+             price: null,
              branchID: "",
+             quantity: null,
+             datetime: null,
              latestNumber: 1,
              products: [
                  {number: 1, name: 'Condom', description: 'safety',price:'80',branchID:'112'},
@@ -141,12 +176,8 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-
-.text_field {
-    background-color: sandybrown;
-
-}
 .small-container {
   max-width: 680px;
 }
+
 </style>
